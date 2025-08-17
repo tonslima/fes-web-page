@@ -1,7 +1,7 @@
 # 🦅 FES - Família Eagle Steam
 
 ## 🚨 DISCLAIMER
-> **ATENÇÃO: As informações contidas nesse projeto é de carátér humoristico e não tem o intuito de prejudicar nenhuma pessoa citada/envolvida.**
+> **ATENÇÃO: As informações contidas nesse projeto é de caráter humoristico e não tem o intuito de prejudicar nenhuma pessoa citada/envolvida.**
 
 ## 🎯 Visão Geral
 
