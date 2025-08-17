@@ -1,10 +1,11 @@
 # 🦅 FES - Família Eagle Steam
 
-> **Uma landing page moderna para o grupo de gaming FES com design profissional e interações avançadas**
+## 🚨 DISCLAIMER
+> **ATENÇÃO: As informações contidas nesse projeto é de carátér humoristico e não tem o intuito de prejudicar nenhuma pessoa citada/envolvida.**
 
 ## 🎯 Visão Geral
 
-A **FES (Família Eagle Steam)** é um grupo de gaming fundado em 2017, dedicado a criar experiências memoráveis entre seus membros. Este projeto é uma landing page moderna que apresenta o grupo de forma única e divertida.
+A **Uma landing page para o grupo de gaming da FES com intuito de aprendizado pessoal das tecnologias utilizadas.**
 
 ## ✨ Características
 
