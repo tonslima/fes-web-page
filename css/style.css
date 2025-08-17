@@ -770,6 +770,12 @@ header {
         background-attachment: scroll;
     }
     
+    /* Adjust background position for mobile */
+    body::before {
+        background-position: 65% center;
+        background-attachment: scroll;
+    }
+    
     header {
         min-height: 70vh;
         padding: 20px 15px;
@@ -915,6 +921,12 @@ header {
 
 /* Mobile */
 @media (max-width: 480px) {
+    /* Adjust background position for smaller mobile screens */
+    body::before {
+        background-position: 70% center;
+        background-attachment: scroll;
+    }
+    
     header {
         padding: 20px 10px;
         min-height: 250px;
@@ -1102,6 +1114,12 @@ header {
 
 /* Extra small devices (old phones, very small screens) */
 @media (max-width: 320px) {
+    /* Center background more for very small screens */
+    body::before {
+        background-position: 75% center;
+        background-attachment: scroll;
+    }
+    
     .header-container {
         padding: 15px 5px;
     }
@@ -1448,6 +1466,12 @@ header {
 /* Prevent horizontal overflow on all devices */
 /* Specific mobile overflow fixes */
 @media (max-width: 480px) {
+    /* Optimize background position for ultra-small screens */
+    body::before {
+        background-position: 80% center;
+        background-attachment: scroll;
+    }
+    
     /* Ensure no horizontal scroll */
     .header-container,
     .hero-content,
