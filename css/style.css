@@ -654,8 +654,8 @@ header {
     }
 }
 
-/* Small Laptops */
-@media (max-width: 992px) {
+/* Tablets and Mobile */
+@media (max-width: 768px) {
     .header-container {
         padding: 20px 40px;
         flex-direction: row;
@@ -738,34 +738,6 @@ header {
 
 /* iPad and tablet specific */
 @media (max-width: 1024px) {
-    .sobre-section {
-        background: url('../pics/red.png') center/cover no-repeat;
-        -webkit-background-size: cover;
-        background-size: cover;
-        background-attachment: scroll;
-    }
-    
-    .localizacao-section {
-        background: url('../pics/off-white.png') center/cover no-repeat;
-        -webkit-background-size: cover;
-        background-size: cover;
-        background-attachment: scroll;
-    }
-    
-    /* Align "sobre" content to the right on tablets */
-    .sobre-content {
-        text-align: right;
-        margin-left: auto;
-    }
-    
-    .sobre-content h2,
-    .sobre-content p {
-        text-align: right;
-    }
-}
-
-/* Specific tablet range (769px to 992px) */
-@media (min-width: 769px) and (max-width: 992px) {
     .sobre-section {
         background: url('../pics/red.png') center/cover no-repeat;
         -webkit-background-size: cover;

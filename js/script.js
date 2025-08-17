@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para verificar se é dispositivo móvel/tablet
     function isMobileDevice() {
-        return window.innerWidth <= 992;
+        return window.innerWidth <= 768;
     }
     
     // Criar header fixo para desktop
