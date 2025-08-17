@@ -5,7 +5,7 @@
 
 ## 🎯 Visão Geral
 
-A **Uma landing page para o grupo de gaming da FES com intuito de aprendizado pessoal das tecnologias utilizadas.**
+**Uma landing page para o grupo de gaming da FES com intuito de aprendizado pessoal das tecnologias utilizadas.**
 
 ## ✨ Características
 
