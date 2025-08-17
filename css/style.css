@@ -11,6 +11,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 *:focus {
@@ -93,7 +100,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 400px;
+    padding: 20px clamp(20px, 10vw, 400px);
     width: 100%;
     position: relative;
     z-index: 10;
@@ -113,7 +120,7 @@ header {
     opacity: 0;
     transform: translateY(-100%);
     transition: all 0.3s ease;
-    padding: 8px 400px;
+    padding: 8px clamp(20px, 10vw, 400px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -195,6 +202,84 @@ header {
     transform: translateY(-2px);
 }
 
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-white);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+    background-color: #CF2A23;
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+    background-color: #CF2A23;
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    padding-top: 80px;
+    backdrop-filter: blur(10px);
+}
+
+.mobile-nav.active {
+    display: block;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.mobile-nav a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 15px 30px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    background: rgba(207, 42, 35, 0.2);
+    color: #CF2A23;
+}
+
+.desktop-nav {
+    display: block;
+}
+
 /* Hero Content */
 .hero-content {
     flex: 1;
@@ -214,6 +299,7 @@ header {
     font-weight: 500;
     margin-bottom: 10px;
     color: var(--text-white);
+    transform: translateX(-350px);
 }
 
 .hero-content h2 {
@@ -222,6 +308,7 @@ header {
     color: var(--text-gray);
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transform: translateX(-350px);
 }
 
 /* Hero Buttons */
@@ -229,6 +316,7 @@ header {
     display: flex;
     gap: 20px;
     margin-top: 20px;
+    transform: translateX(-350px);
 }
 
 /* Primary Button */
@@ -537,6 +625,173 @@ header {
 
 /* Responsive Design */
 
+/* Large Screens */
+@media (min-width: 1400px) {
+    .header-container,
+    .fixed-header {
+        padding-left: max(20px, calc((100vw - 1400px) / 2 + 40px));
+        padding-right: max(20px, calc((100vw - 1400px) / 2 + 40px));
+    }
+    
+    .hero-content {
+        padding-left: max(80px, calc((100vw - 1400px) / 2 + 80px));
+        padding-right: max(80px, calc((100vw - 1400px) / 2 + 80px));
+    }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+    .header-container {
+        padding: 20px clamp(20px, 5vw, 200px);
+    }
+    
+    .fixed-header {
+        padding: 8px clamp(20px, 5vw, 200px);
+    }
+    
+    .hero-content {
+        padding: 140px clamp(40px, 5vw, 80px) 40px;
+    }
+}
+
+/* Small Laptops */
+@media (max-width: 992px) {
+    .header-container {
+        padding: 20px 40px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        min-height: auto;
+    }
+    
+    .logo-section {
+        justify-content: flex-start;
+    }
+    
+    /* Hide desktop navigation */
+    .desktop-nav {
+        display: none;
+    }
+    
+    /* Show mobile menu toggle */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    /* Hide fixed header on tablets/mobile */
+    .fixed-header {
+        display: none;
+    }
+    
+    .fixed-header {
+        padding: 8px 20px;
+        height: auto;
+        min-height: 60px;
+    }
+    
+    .fixed-header .header-container {
+        flex-direction: row;
+        gap: 0;
+    }
+    
+    .hero-content {
+        padding: 40px 40px;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Medium screens (tablets landscape, small laptops) - Fix transform issues */
+@media (max-width: 992px) {
+    .sobre-content h2,
+    .localizacao-content h2 {
+        transform: translateX(0);
+        text-align: center;
+    }
+    
+    .sobre-content,
+    .localizacao-content {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    
+    /* Small laptops/tablets backgrounds */
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+}
+
+/* iPad and tablet specific */
+@media (max-width: 1024px) {
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    /* Align "sobre" content to the right on tablets */
+    .sobre-content {
+        text-align: right;
+        margin-left: auto;
+    }
+    
+    .sobre-content h2,
+    .sobre-content p {
+        text-align: right;
+    }
+}
+
+/* Specific tablet range (769px to 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    /* Align "sobre" content to the right on tablets */
+    .sobre-content {
+        text-align: right;
+        margin-left: auto;
+    }
+    
+    .sobre-content h2,
+    .sobre-content p {
+        text-align: right;
+    }
+}
+
 /* Tablets */
 @media (max-width: 768px) {
     body {
@@ -544,12 +799,35 @@ header {
     }
     
     header {
-        min-height: 300px;
+        min-height: 70vh;
         padding: 20px 15px;
     }
     
     .header-container {
         padding: 20px 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 100px;
+    }
+    
+    .logo-section {
+        justify-content: flex-start;
+    }
+    
+    /* Hide desktop navigation */
+    .desktop-nav {
+        display: none;
+    }
+    
+    /* Show mobile menu toggle */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    /* Hide fixed header on tablets/mobile */
+    .fixed-header {
+        display: none;
     }
     
     .fixed-header {
@@ -618,6 +896,39 @@ header {
         width: 156px;
         height: 156px;
     }
+    
+    /* Ensure transforms are neutralized on tablets */
+    .sobre-content h2,
+    .localizacao-content h2 {
+        transform: translateX(0);
+        text-align: center;
+    }
+    
+    /* Tablet specific backgrounds */
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    /* Align "sobre" content to the right on tablets */
+    .sobre-content {
+        text-align: right;
+        margin-left: auto;
+    }
+    
+    .sobre-content h2,
+    .sobre-content p {
+        text-align: right;
+    }
 }
 
 /* Mobile */
@@ -629,6 +940,33 @@ header {
     
     .header-container {
         padding: 20px 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo-section {
+        justify-content: flex-start;
+    }
+    
+    /* Hide desktop navigation */
+    .desktop-nav {
+        display: none;
+    }
+    
+    /* Show mobile menu toggle */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .mobile-menu-toggle span {
+        background-color: var(--text-white);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Hide fixed header completely on mobile */
+    .fixed-header {
+        display: none;
     }
     
     .fixed-header {
@@ -716,6 +1054,170 @@ header {
     
     .characteristic-card p {
         font-size: 0.9rem;
+    }
+    
+    /* Neutralize all transforms on mobile */
+    .sobre-content h2,
+    .localizacao-content h2,
+    .sobre-content p,
+    .localizacao-content p,
+    .discord-button,
+    .copyright-section {
+        transform: none;
+    }
+    
+    .discord-button:hover {
+        transform: translateY(-2px);
+    }
+    
+    .discord-button:active {
+        transform: translateY(5px);
+    }
+    
+    /* Better mobile layout */
+    .sobre-section,
+    .localizacao-section {
+        padding: 40px 20px;
+        text-align: center;
+        justify-content: center;
+        background-position: center;
+        background-attachment: scroll;
+    }
+    
+    /* Mobile specific backgrounds */
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+    }
+    
+    .sobre-content,
+    .localizacao-content {
+        text-align: center;
+        max-width: 100%;
+    }
+}
+
+/* Extra small devices (old phones, very small screens) */
+@media (max-width: 320px) {
+    .header-container {
+        padding: 15px 5px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .card {
+        width: 200px;
+        height: 220px;
+    }
+    
+    .border {
+        width: 190px;
+        height: 210px;
+    }
+    
+    .sobre-section,
+    .localizacao-section {
+        padding: 30px 10px;
+        background-attachment: scroll;
+    }
+    
+    /* Extra small mobile backgrounds */
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+    }
+    
+    .sobre-content h2,
+    .localizacao-content h2 {
+        font-size: 2rem;
+    }
+    
+    .final-section {
+        padding: 20px 10px;
+    }
+}
+
+/* Tablet landscape orientation */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .sobre-content h2,
+    .localizacao-content h2,
+    .sobre-content p,
+    .localizacao-content p {
+        transform: translateX(0);
+    }
+    
+    .discord-button {
+        transform: translateX(0);
+    }
+    
+    .discord-button:hover {
+        transform: translateY(-2px);
+    }
+    
+    .discord-button:active {
+        transform: translateY(5px);
+    }
+    
+    .copyright-section {
+        transform: translateX(0);
+        text-align: center;
+    }
+    
+    .sobre-section,
+    .localizacao-section {
+        padding: 60px 30px;
+        text-align: center;
+        justify-content: center;
+        background-attachment: scroll;
+        background-position: center;
+    }
+    
+    /* Mobile/Tablet specific backgrounds */
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    .sobre-content,
+    .localizacao-content {
+        text-align: center;
     }
 }
 
@@ -882,4 +1384,866 @@ header {
     margin: 5px 0;
     opacity: 0.8;
     font-family: 'Montserrat', sans-serif;
+}
+
+/* iPhone specific media queries for Safari compatibility */
+@media only screen and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+}
+
+/* iPhone and small mobile devices */
+@media only screen and (max-width: 414px) {
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+}
+
+/* iPhone X and newer models */
+@media only screen and (max-width: 390px) {
+    .sobre-section {
+        background: url('../pics/red.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+    
+    .localizacao-section {
+        background: url('../pics/off-white.png') center/cover no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+}
+/* Prevent horizontal overflow on all devices */
+/* Specific mobile overflow fixes */
+@media (max-width: 480px) {
+    /* Ensure no horizontal scroll */
+    .header-container,
+    .hero-content,
+    .characteristics-container,
+    .members-container,
+    .sobre-content,
+    .localizacao-content,
+    .final-content {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding-left: clamp(10px, 5vw, 20px);
+        padding-right: clamp(10px, 5vw, 20px);
+    }
+    
+    /* Make cards fully responsive */
+    .card {
+        width: min(200px, calc(100vw - 40px));
+        max-width: 100%;
+    }
+    
+    .border {
+        width: min(190px, calc(100vw - 50px));
+        max-width: 100%;
+    }
+    
+    /* Ensure grid doesnt overflow */
+    .characteristics-container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        gap: 20px;
+    }
+    
+    /* Ensure members container doesnt overflow */
+    .members-container {
+        padding: 1rem;
+        gap: 1rem;
+        justify-content: center;
+    }
+}
+
+/* Additional mobile navigation fixes */
+@media (max-width: 480px) {
+    .mobile-nav {
+        width: 100vw;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+    
+    /* Force all sections to stay within viewport */
+    section {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+}
+
+/* Mobile fixes for text overflow and button positioning */
+@media (max-width: 480px) {
+    /* Sobre section mobile fixes */
+    .sobre-section {
+        padding: 30px 15px;
+        text-align: center;
+    }
+    
+    .sobre-content {
+        text-align: center;
+        max-width: 100%;
+        padding: 0 10px;
+        transform: none;
+        margin: 0 auto;
+    }
+    
+    .sobre-content h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        transform: none;
+        text-align: center;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+    
+    .sobre-content p {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        line-height: 1.4;
+        text-align: center;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Localizacao section mobile fixes */
+    .localizacao-section {
+        padding: 30px 15px;
+        text-align: center;
+    }
+    
+    .localizacao-content {
+        text-align: center;
+        max-width: 100%;
+        padding: 0 10px;
+        margin: 0 auto;
+    }
+    
+    .localizacao-content h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        text-align: center;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+    
+    .localizacao-content p {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        line-height: 1.4;
+        text-align: center;
+        max-width: 100%;
+        margin: 0 auto 20px auto;
+    }
+    
+    /* Discord button mobile fixes */
+    .discord-button {
+        transform: none;
+        padding: 12px 20px;
+        font-size: clamp(12px, 3vw, 14px);
+        gap: 8px;
+        margin: 20px auto 0 auto;
+        display: flex;
+        justify-content: center;
+        max-width: 200px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .discord-button svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Extra small mobile devices (320px and below) */
+@media (max-width: 320px) {
+    .sobre-section,
+    .localizacao-section {
+        padding: 20px 10px;
+    }
+    
+    .sobre-content,
+    .localizacao-content {
+        padding: 0 5px;
+    }
+    
+    .sobre-content h2,
+    .localizacao-content h2 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-bottom: 10px;
+    }
+    
+    .sobre-content p,
+    .localizacao-content p {
+        font-size: clamp(0.8rem, 4vw, 1rem);
+        margin-bottom: 15px;
+    }
+    
+    .discord-button {
+        padding: 10px 15px;
+        font-size: 11px;
+        max-width: 180px;
+        gap: 6px;
+    }
+    
+    .discord-button svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Hero section mobile fixes */
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 60px 20px 40px 20px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .hero-content h1 {
+        transform: none;
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    .hero-content h2 {
+        transform: none;
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    
+    .hero-buttons {
+        transform: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: clamp(14px, 3.5vw, 16px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 40px 15px 30px 15px;
+    }
+    
+    .hero-content h1 {
+        font-size: clamp(2rem, 7vw, 3rem);
+        margin-bottom: 10px;
+    }
+    
+    .hero-content h2 {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        margin-bottom: 20px;
+    }
+    
+    .hero-buttons {
+        gap: 12px;
+        max-width: 280px;
+    }
+    
+    .hero-buttons .btn {
+        padding: 10px 16px;
+        font-size: clamp(12px, 3vw, 14px);
+    }
+}
+
+/* Sobre and Junte-se a FES sections mobile fixes */
+@media (max-width: 768px) {
+    /* Sobre section fixes */
+    .sobre-content h2 {
+        transform: none;
+        text-align: center;
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .sobre-content p {
+        transform: none;
+        text-align: center;
+        font-size: clamp(1rem, 3.5vw, 1.2rem);
+        line-height: 1.6;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Localizacao section fixes */
+    .localizacao-content h2 {
+        transform: none;
+        text-align: center;
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+    }
+    
+    .localizacao-content p {
+        transform: none;
+        text-align: center;
+        font-size: clamp(1rem, 3.5vw, 1.2rem);
+        line-height: 1.6;
+        max-width: 100%;
+        margin: 0 auto 1.5rem auto;
+        color: #333333;
+    }
+    
+    /* Discord button fixes */
+    .discord-button {
+        transform: none;
+        margin: 20px auto 0 auto;
+        display: flex;
+        justify-content: center;
+        max-width: 250px;
+        padding: 15px 30px;
+        font-size: clamp(13px, 3vw, 15px);
+    }
+    
+    .discord-button:hover {
+        transform: translateY(-2px);
+    }
+    
+    .discord-button:active {
+        transform: translateY(2px);
+    }
+    
+    /* Copyright section fixes */
+    .copyright-section {
+        transform: none;
+        text-align: center;
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Smaller mobile adjustments */
+    .sobre-content h2,
+    .localizacao-content h2 {
+        font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+        margin-bottom: 1rem;
+    }
+    
+    .sobre-content p,
+    .localizacao-content p {
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+    
+    .discord-button {
+        max-width: 220px;
+        padding: 12px 25px;
+        font-size: clamp(12px, 2.8vw, 14px);
+        gap: 8px;
+    }
+    
+    .discord-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .copyright-section {
+        padding: 20px 10px;
+    }
+}
+
+/* Vertical centering fixes for Sobre and Junte-se a FES sections */
+@media (max-width: 768px) {
+    /* Vertical centering for sobre section */
+    .sobre-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        padding: 40px 20px;
+    }
+    
+    .sobre-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    /* Vertical centering for localizacao section */
+    .localizacao-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        padding: 40px 20px;
+    }
+    
+    .localizacao-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Smaller mobile vertical centering */
+    .sobre-section,
+    .localizacao-section {
+        min-height: 50vh;
+        padding: 30px 15px;
+    }
+    
+    .sobre-content,
+    .localizacao-content {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 320px) {
+    /* Extra small devices */
+    .sobre-section,
+    .localizacao-section {
+        min-height: 45vh;
+        padding: 25px 10px;
+    }
+}
+
+/* Improved visibility for member card texts */
+.card-back {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 25px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.card-back p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Enhanced card hover effect with better text visibility */
+.card::before {
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    );
+}
+
+.card:hover::before {
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    );
+}
+
+/* Mobile optimization for card text visibility */
+@media (max-width: 768px) {
+    .card-back {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 20px 15px;
+    }
+    
+    .card-back p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+    }
+}
+
+@media (max-width: 480px) {
+    .card-back {
+        background: rgba(0, 0, 0, 0.85);
+        padding: 18px 12px;
+    }
+    
+    .card-back p {
+        font-size: 0.9rem;
+        line-height: 1.3;
+    }
+}
+
+/* Fix: Remove background from card-back and add only to text area */
+.card-back {
+    background: none;
+    backdrop-filter: none;
+    border-radius: none;
+    padding: 25px 20px;
+    box-shadow: none;
+}
+
+.card-back p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 15px 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile optimization - only text background */
+@media (max-width: 768px) {
+    .card-back {
+        background: none;
+        backdrop-filter: none;
+        padding: 20px 15px;
+    }
+    
+    .card-back p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 12px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-back {
+        background: none;
+        padding: 18px 12px;
+    }
+    
+    .card-back p {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        background: rgba(0, 0, 0, 0.85);
+        padding: 10px 8px;
+    }
+}
+
+/* Fix: Restore member images with overlay instead of replacing background */
+.card::before {
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), var(--member-image);
+    background-size: cover;
+    background-position: center;
+}
+
+.card:hover::before {
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), var(--member-image);
+    background-size: cover;
+    background-position: center;
+}
+
+/* Individual Member Cards with CSS variables */
+.card-toneki {
+    --member-image: url("../pics/toneki.jpg");
+}
+
+.card-toneki::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), url("../pics/toneki.jpg");
+}
+
+.card-felifer {
+    --member-image: url("../pics/felifer.jpeg");
+}
+
+.card-felifer::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), url("../pics/felifer.jpeg");
+}
+
+.card-gordogamer {
+    --member-image: url("../pics/gordogamer.jpeg");
+}
+
+.card-gordogamer::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), url("../pics/gordogamer.jpeg");
+}
+
+.card-kai {
+    --member-image: url("../pics/kai.png");
+}
+
+.card-kai::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), url("../pics/kai.png");
+}
+
+.card-miguel {
+    --member-image: url("../pics/miguel.jpeg");
+}
+
+.card-miguel::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), url("../pics/miguel.jpeg");
+}
+
+.card-ninguem {
+    --member-image: url("../pics/ninguem.jpeg");
+}
+
+.card-ninguem::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), url("../pics/ninguem.jpeg");
+}
+
+.card-tenente {
+    --member-image: url("../pics/tenente.jpeg");
+}
+
+.card-tenente::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.4) 100%
+    ), url("../pics/tenente.jpeg");
+}
+
+/* Hover effects for individual cards */
+.card-toneki:hover::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/toneki.jpg");
+}
+
+.card-felifer:hover::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/felifer.jpeg");
+}
+
+.card-gordogamer:hover::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/gordogamer.jpeg");
+}
+
+.card-kai:hover::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/kai.png");
+}
+
+.card-miguel:hover::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/miguel.jpeg");
+}
+
+.card-ninguem:hover::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/ninguem.jpeg");
+}
+
+.card-tenente:hover::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/tenente.jpeg");
+}
+
+/* Specific fix for GordoGamer card text on mobile */
+@media (max-width: 768px) {
+    .card-gordogamer .card-back p {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        padding: 10px 8px;
+        background: rgba(0, 0, 0, 0.85);
+    }
+}
+
+@media (max-width: 480px) {
+    .card-gordogamer .card-back p {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        padding: 8px 6px;
+        background: rgba(0, 0, 0, 0.9);
+    }
+}
+
+@media (max-width: 320px) {
+    .card-gordogamer .card-back p {
+        font-size: 0.7rem;
+        line-height: 1.1;
+        padding: 6px 4px;
+    }
+}
+
+/* Touch device card active state (simulates hover on mobile) */
+.card-active::before {
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), var(--member-image);
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+}
+
+.card-active .card-front {
+    transform: translateX(-100%);
+    filter: blur(2px);
+}
+
+.card-active .card-back {
+    transform: translate(-50%, -50%) translateX(0);
+}
+
+/* Specific active states for each member */
+.card-toneki.card-active::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/toneki.jpg");
+}
+
+.card-felifer.card-active::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/felifer.jpeg");
+}
+
+.card-gordogamer.card-active::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/gordogamer.jpeg");
+}
+
+.card-kai.card-active::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/kai.png");
+}
+
+.card-miguel.card-active::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/miguel.jpeg");
+}
+
+.card-ninguem.card-active::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/ninguem.jpeg");
+}
+
+.card-tenente.card-active::before {
+    background-image: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.3) 100%
+    ), url("../pics/tenente.jpeg");
+}
+
+/* Mobile optimization for active cards */
+@media (max-width: 768px) {
+    .card-active::before {
+        filter: blur(2px);
+    }
+    
+    .card-active .card-front {
+        filter: blur(1px);
+    }
 }
