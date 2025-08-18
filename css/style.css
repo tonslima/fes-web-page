@@ -516,7 +516,7 @@ header {
 
 /* Individual Member Cards */
 .card-toneki::before {
-    background-image: url('../pics/toneki.jpg');
+    background-image: url('../pics/toneki.png');
 }
 
 .card-felifer::before {
@@ -524,7 +524,7 @@ header {
 }
 
 .card-gordogamer::before {
-    background-image: url('../pics/gordogamer.jpeg');
+    background-image: url('../pics/gordogamer.png');
 }
 
 .card-kai::before {
@@ -532,15 +532,15 @@ header {
 }
 
 .card-miguel::before {
-    background-image: url('../pics/miguel.jpeg');
+    background-image: url('../pics/miguel.png');
 }
 
 .card-ninguem::before {
-    background-image: url('../pics/ninguem.jpeg');
+    background-image: url('../pics/ninguem.png');
 }
 
 .card-tenente::before {
-    background-image: url('../pics/tenente.jpeg');
+    background-image: url('../pics/tenente.jpg');
 }
 
 /* Characteristics Section */
@@ -2031,7 +2031,7 @@ header {
 
 /* Individual Member Cards with CSS variables */
 .card-toneki {
-    --member-image: url("../pics/toneki.jpg");
+    --member-image: url("../pics/toneki.png");
 }
 
 .card-toneki::before {
@@ -2039,7 +2039,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.2) 0%, 
         rgba(0, 0, 0, 0.4) 100%
-    ), url("../pics/toneki.jpg");
+    ), url("../pics/toneki.png");
 }
 
 .card-felifer {
@@ -2055,7 +2055,7 @@ header {
 }
 
 .card-gordogamer {
-    --member-image: url("../pics/gordogamer.jpeg");
+    --member-image: url("../pics/gordogamer.png");
 }
 
 .card-gordogamer::before {
@@ -2063,7 +2063,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.2) 0%, 
         rgba(0, 0, 0, 0.4) 100%
-    ), url("../pics/gordogamer.jpeg");
+    ), url("../pics/gordogamer.png");
 }
 
 .card-kai {
@@ -2079,7 +2079,7 @@ header {
 }
 
 .card-miguel {
-    --member-image: url("../pics/miguel.jpeg");
+    --member-image: url("../pics/miguel.png");
 }
 
 .card-miguel::before {
@@ -2087,7 +2087,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.2) 0%, 
         rgba(0, 0, 0, 0.4) 100%
-    ), url("../pics/miguel.jpeg");
+    ), url("../pics/miguel.png");
 }
 
 .card-ninguem {
@@ -2099,11 +2099,11 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.2) 0%, 
         rgba(0, 0, 0, 0.4) 100%
-    ), url("../pics/ninguem.jpeg");
+    ), url("../pics/ninguem.png");
 }
 
 .card-tenente {
-    --member-image: url("../pics/tenente.jpeg");
+    --member-image: url("../pics/tenente.jpg");
 }
 
 .card-tenente::before {
@@ -2111,7 +2111,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.2) 0%, 
         rgba(0, 0, 0, 0.4) 100%
-    ), url("../pics/tenente.jpeg");
+    ), url("../pics/tenente.jpg");
 }
 
 /* Hover effects for individual cards */
@@ -2120,7 +2120,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/toneki.jpg");
+    ), url("../pics/toneki.png");
 }
 
 .card-felifer:hover::before {
@@ -2136,7 +2136,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/gordogamer.jpeg");
+    ), url("../pics/gordogamer.png");
 }
 
 .card-kai:hover::before {
@@ -2152,7 +2152,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/miguel.jpeg");
+    ), url("../pics/miguel.png");
 }
 
 .card-ninguem:hover::before {
@@ -2160,7 +2160,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/ninguem.jpeg");
+    ), url("../pics/ninguem.png");
 }
 
 .card-tenente:hover::before {
@@ -2168,7 +2168,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/tenente.jpeg");
+    ), url("../pics/tenente.jpg");
 }
 
 /* Specific fix for GordoGamer card text on mobile */
@@ -2225,7 +2225,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/toneki.jpg");
+    ), url("../pics/toneki.png");
 }
 
 .card-felifer.card-active::before {
@@ -2241,7 +2241,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/gordogamer.jpeg");
+    ), url("../pics/gordogamer.png");
 }
 
 .card-kai.card-active::before {
@@ -2257,7 +2257,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/miguel.jpeg");
+    ), url("../pics/miguel.png");
 }
 
 .card-ninguem.card-active::before {
@@ -2265,7 +2265,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/ninguem.jpeg");
+    ), url("../pics/ninguem.png");
 }
 
 .card-tenente.card-active::before {
@@ -2273,7 +2273,7 @@ header {
         135deg, 
         rgba(0, 0, 0, 0.1) 0%, 
         rgba(0, 0, 0, 0.3) 100%
-    ), url("../pics/tenente.jpeg");
+    ), url("../pics/tenente.jpg");
 }
 
 /* Mobile optimization for active cards */
